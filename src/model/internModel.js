@@ -21,5 +21,9 @@ const internSchema = new mongoose.Schema({
         ref:"collage-data",
         required:true
     },
+    isDeleted:{
+        type:Boolean,
+        default:false
+    }
 });
 module.exports = mongoose.model('intern-data',internSchema);

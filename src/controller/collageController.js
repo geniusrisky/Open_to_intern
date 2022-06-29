@@ -21,6 +21,9 @@ const createCollage = async function(req,res)
 
         if(!validation.isValidUrl(logoLink)) return res.status(400).send({status:false, message:"logoLink is not contains valid url"})
 
+        if((await collageModel.find({name:name})!=0)) return res.status(400).send({status:false, message:"please provide a unique collage name"})
+       
+
         const createdData = await collageModel.create(data);
         res.status(201).send({status:true,data:createdData})
        

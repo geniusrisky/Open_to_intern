@@ -5,7 +5,7 @@ const internController = require('../controller/interController');
 
 
 router.post('/functionup/colleges',collageController.createCollage)
-// router.post('/functionup/interns',internController)
+router.post('/functionup/interns',internController.createIntern)
 // router.get(' /functionup/collegeDetails',internController)
 
 module.exports = router;
