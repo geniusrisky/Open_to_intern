@@ -1,6 +1,7 @@
 // name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
 
 const mongoose = require('mongoose')
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 const collageSchema = new mongoose.Schema({
     name:{
@@ -19,6 +20,8 @@ const collageSchema = new mongoose.Schema({
     isDeleted:{
         type:Boolean,
         default:false
-    }
+    },
+    
+    
 });
 module.exports = mongoose.model('collage-data',collageSchema);
