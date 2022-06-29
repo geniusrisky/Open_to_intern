@@ -21,7 +21,7 @@ const createIntern = async function (req, res) {
 
         if (validation.isVerifyString(name)) return res.status(400).send({ status: false, message: "name doesn't contains any digit" })
         if (!validation.validateEmail(email)) return res.status(400).send({ status: false, message: "Please provide a valid email" })
-        // if(!validation.phoneNumberCheck(mobile)) return res.status(400).send({status:false, message:"Please provide a valid mobile number"})
+        if(!validation.isValidMobileNo(mobile)) return res.status(400).send({status:false, message:"Please provide a valid mobile number"})
         if (!validation.isValidOjectId(collegeId)) return res.status(400).send({ status: false, message: "Please provide a valid collageId" })
 
 
@@ -34,11 +34,13 @@ const createIntern = async function (req, res) {
         if (isEmailAlreadyExists.length != 0) return res.status(400).send({ status: false, message: "This email is already exist" })
 
         // collage id is present in db or not 
-        const isCollegeIdPresent = await collageModel.findById(collegeId)
+        const isCollegeIdPresent = await collegeModel.findById(collegeId)
         if (Object.keys(isCollegeIdPresent).length == 0) return res.status(400).send({ status: false, message: `Collage not found by this collageId ${collegeId}` })
 
-        const createdInternData = await internModel.create(data)
-        res.status(201).send({ status: true, data: createdInternData });
+        const newData =  { name, email, mobile, collegeId }
+        const createdInternData = await internModel.create(newData)
+        const outputData = {isDeleted:false,name:newData.name, email:newData.email, mobile:newData.mobile, collegeId:newData.collegeId}
+        res.status(201).send({ status: true, data: outputData});
 
     } catch (error) {
         res.status(500).send({ status: false, message: error.message })

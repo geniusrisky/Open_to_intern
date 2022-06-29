@@ -1,10 +1,10 @@
 // name: { mandatory, unique, example iith}, fullName: {mandatory, example `Indian Institute of Technology, Hyderabad`}, logoLink: {mandatory}, isDeleted: {boolean, default: false} }
 
-const collageModel = require('../model/collageModel')
+const collegeModel = require('../model/collageModel')
 
 const validation = require('../controller/Validator')
 
-const createCollage = async function(req,res)
+const createCollege = async function(req,res)
 {
     try{
         const data = req.body;
@@ -21,11 +21,12 @@ const createCollage = async function(req,res)
 
         if(!validation.isValidUrl(logoLink)) return res.status(400).send({status:false, message:"logoLink is not contains valid url"})
 
-        if((await collageModel.find({name:name})!=0)) return res.status(400).send({status:false, message:"please provide a unique collage name"})
+        if((await collegeModel.find({name:name})!=0)) return res.status(400).send({status:false, message:"please provide a unique collage name"})
        
-
-        const createdData = await collageModel.create(data);
-        res.status(201).send({status:true,data:createdData})
+        const newData = {name,fullName, logoLink} 
+        const createdData = await collegeModel.create(newData);
+        const outputData = {name:newData.name,fullName:newData.fullName,logoLink:newData.logoLink,isDeleted:false}
+        res.status(201).send({status:true,data:outputData})
        
     } catch(error){
         res.status(500).send({status:false,message:error.message})
@@ -33,5 +34,5 @@ const createCollage = async function(req,res)
 }
 
 module.exports = {
-    createCollage
+    createCollege
 }

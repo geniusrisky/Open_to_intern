@@ -41,6 +41,10 @@ const isVerifyString = function (string) {
     return regex.test(string)
 };
 
+const regEx=/^[6-9]\d{9}$/
+const isValidMobileNo = function(mobno)
+{
+    return regEx.test(mobno)
+}
 
-
-module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId}
+module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo}
