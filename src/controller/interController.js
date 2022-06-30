@@ -56,12 +56,10 @@ let getInterns = async function (req, res) {
             status: false,
             message: "College name must be required!"
         })
-        collegeName = collegeName.toLowerCase();
-
         const output = {};
 
         // find college data by using college name
-        const collegeData = await collegeModel.findOne({name: collegeName, isDeleted: false})
+        const collegeData = await collegeModel.findOne({$or:[{name: collegeName.toLowerCase()},{name:collegeName.toUpperCase()}]} ,{isDeleted: false})
 
         if (!collegeData) return res.status(404).send({ status: false, message: `College name related to '${collegeName}' is no exist!`})
 
@@ -74,12 +72,12 @@ let getInterns = async function (req, res) {
         output.logoLink = collegeData.logoLink
         output.interns = internsList
 
-        res.status(200).send({status: true, data: output })
+        res.status(200).send({data: output })
 
     }
     catch (error) {
         // catch case handel here
-        res.status(500).send({status: true,data: error.message})
+        res.status(500).send({status: false,data: error.message})
     }
 }
 module.exports.createIntern = createIntern;
