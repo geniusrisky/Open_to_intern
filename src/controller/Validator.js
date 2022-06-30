@@ -35,15 +35,15 @@ const validateEmail = function (mail) {
     }
 };
 
-
+// For collage Name abbr..
 const regex1 = /[ `/\d/!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
 const isVerifyStringForAbbr = function (string) {
     return regex1.test(string)
 };
 
 
-// const regex = /\d/;
-const regex = /[`/\d/!@#$%^&*()_+\-=\[\]{};':"\\|.<>\/?~]/
+// const regex = /\d/; // For fullName validation
+const regex = /[`/\d/!@#$%^&*()_+\=\[\]{};':"\\|.<>\/?~]/
 const isVerifyString = function (string) {
     return regex.test(string)
 };
@@ -59,7 +59,8 @@ const isValidMobileNo = function(mobno)
 const isValidAbbr = function(name,fullName)
 {
     let fullname1=fullName.replace(","," ")
-    let nameArr = fullname1.split(" ") 
+    let fullname2=fullname1.replace("-"," ");
+    let nameArr = fullname2.split(" ") 
     let abbr =''
     for(let i=0;i<nameArr.length;i++)
         {
