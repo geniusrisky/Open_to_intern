@@ -18,7 +18,7 @@ const createCollege = async function(req,res)
         if(!validation.isValid(fullName)) return res.status(400).send({status:false, message:"fullName tag is required"})
         if(!validation.isValid(logoLink)) return res.status(400).send({status:false, message:"logoLink tag is required"})
 
-
+        name = name.trim()
         if(validation.isVerifyStringForAbbr(name)) return res.status(400).send({status:false, message:"name doesn't contains any digit or special symbol"})
         if(validation.isVerifyString(fullName)) return res.status(400).send({status:false, message:"fullName doesn't contains any digit or special symbol expect spce"})
 

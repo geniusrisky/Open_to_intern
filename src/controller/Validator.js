@@ -59,7 +59,7 @@ const isValidMobileNo = function(mobno)
 const isValidAbbr = function(name,fullName)
 {
     let fullname1=fullName.replace(","," ")
-    let nameArr = fullname1.split(" ")
+    let nameArr = fullname1.split(" ") 
     let abbr =''
     for(let i=0;i<nameArr.length;i++)
         {
