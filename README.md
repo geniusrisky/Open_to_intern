@@ -67,6 +67,7 @@ A Postman collection and request sample
 }
 
 # Collections samples
+<code>
 College
 {
     "name" : "iith",
@@ -74,6 +75,8 @@ College
     "logoLink" : "https://functionup.s3.ap-south-1.amazonaws.com/colleges/iith.png",
     "isDeleted" : false
 }
+</code>
+<code>
 Intern
    {
     "isDeleted" : false,
@@ -82,6 +85,7 @@ Intern
     "mobile" : "90000900000",
     "collegeId" : ObjectId("888771129c9ea621dc7f5e3b")
 }
+</code>
 =========================================================================================================================================
 # Response samples
 College details
