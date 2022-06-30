@@ -63,8 +63,8 @@ const isValidAbbr = function(name,fullName)
     let abbr =''
     for(let i=0;i<nameArr.length;i++)
         {
-            let temp =nameArr[i].charAt(0)
-            abbr = abbr+temp
+            let temp =nameArr[i].charAt(0) 
+            abbr = abbr+temp 
         }
     if(abbr.toUpperCase() == name.toUpperCase() ) 
     {
@@ -72,6 +72,7 @@ const isValidAbbr = function(name,fullName)
     }
     else return false
 }
+
 
 
 module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo,isVerifyStringForAbbr,isValidAbbr}
