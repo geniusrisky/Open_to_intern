@@ -8,7 +8,9 @@ const createCollege = async function(req,res)
 {
     try{
         const data = req.body;
-        const {name,fullName, logoLink} = data;
+        let {name,fullName, logoLink} = data;
+        name = name.toLowerCase();
+        
 
         if(validation.isBodyEmpty(data)) return res.status(400).send({status:false, message:"Please provide required data"})
         if(!validation.isValid(name)) return res.status(400).send({status:false, message:"name tag is required"})
@@ -24,7 +26,7 @@ const createCollege = async function(req,res)
 
         if((await collegeModel.find({name:name})!=0)) return res.status(400).send({status:false, message:"please provide a unique collage name"})
        
-
+        
       
         const newData = {name,fullName, logoLink} 
         if(!validation.isValidAbbr(name,fullName)) return res.status(400).send({status:false,message:"Please provide a valid abbr name"})

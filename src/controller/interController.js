@@ -51,11 +51,12 @@ let getInterns = async function (req, res) {
     try {
 
         // get college name from query params
-        const collegeName = req.query.name
+        let collegeName = req.query.name
         if (!collegeName || collegeName.trim() == "") return res.status(400).send({
             status: false,
             message: "College name must be required!"
         })
+        collegeName = collegeName.toLowerCase();
 
         const output = {};
 
