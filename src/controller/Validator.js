@@ -36,7 +36,14 @@ const validateEmail = function (mail) {
 };
 
 
-const regex = /\d/;
+const regex1 = /[ `/\d/!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+const isVerifyStringForAbbr = function (string) {
+    return regex1.test(string)
+};
+
+
+// const regex = /\d/;
+const regex = /[`/\d/!@#$%^&*()_+\-=\[\]{};':"\\|.<>\/?~]/
 const isVerifyString = function (string) {
     return regex.test(string)
 };
@@ -47,4 +54,24 @@ const isValidMobileNo = function(mobno)
     return regEx.test(mobno)
 }
 
-module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo}
+
+// check abbr name is valid or not 
+const isValidAbbr = function(name,fullName)
+{
+    let fullname1=fullName.replace(","," ")
+    let nameArr = fullname1.split(" ")
+    let abbr =''
+    for(let i=0;i<nameArr.length;i++)
+        {
+            let temp =nameArr[i].charAt(0)
+            abbr = abbr+temp
+        }
+    if(abbr.toUpperCase() == name.toUpperCase() ) 
+    {
+        return true
+    }
+    else return false
+}
+
+
+module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo,isVerifyStringForAbbr,isValidAbbr}
