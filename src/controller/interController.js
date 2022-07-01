@@ -7,7 +7,7 @@ const validation = require('../controller/Validator')
 const createIntern = async function (req, res) {
     try {
         const data = req.body;
-        const { name, email, mobile, collegeId } = data;
+        const { name, email, mobile, collegeName } = data;
 
         if (validation.isBodyEmpty(data)) return res.status(400).send({ status: false, message: "Please provide required data" })
 
@@ -15,15 +15,21 @@ const createIntern = async function (req, res) {
         if (!validation.isValid(name)) return res.status(400).send({ status: false, message: "name tag is required" })
         if (!validation.isValid(email)) return res.status(400).send({ status: false, message: "email tag is required" })
         if (!validation.isValid(mobile)) return res.status(400).send({ status: false, message: "mobile tag is required" })
-        if (!collegeId || collegeId == undefined) return res.status(400).send({ status: false, message: "collageId tag is required" })
+        if (!validation.isValid(collegeName)) return res.status(400).send({ status: false, message: "collegeName tag is required" })
+        // if (!collegeId || collegeId == undefined) return res.status(400).send({ status: false, message: "collageId tag is required" })
 
 
         if (validation.isVerifyString(name)) return res.status(400).send({ status: false, message: "name doesn't contains any digit" })
         if (!validation.validateEmail(email)) return res.status(400).send({ status: false, message: "Please provide a valid email" })
         if (!validation.isValidMobileNo(mobile)) return res.status(400).send({ status: false, message: "Please provide a valid mobile number" })
-        if (!validation.isValidOjectId(collegeId)) return res.status(400).send({ status: false, message: "Please provide a valid collageId" })
+        // if (!validation.isVerifyString(collegeName)) return res.status(400).send({ status: false, message: "Please provide a valid collageName" })
+        // if (!validation.isValidOjectId(collegeId)) return res.status(400).send({ status: false, message: "Please provide a valid collageId" })
 
+        let oneCollegeData= await collegeModel.findOne({fullName:collegeName , isDeleted:false});
 
+        if(!oneCollegeData) return res.status(404).send({ status: false, message: "College not found" })
+
+        let collegeId= oneCollegeData._id;
         // mobile no is unique or not
         const isAlreadyExistsMob = await internModel.find({ mobile: mobile })
         if (isAlreadyExistsMob.length != 0) return res.status(400).send({ status: false, message: "This number is already exist" })
@@ -33,8 +39,8 @@ const createIntern = async function (req, res) {
         if (isEmailAlreadyExists.length != 0) return res.status(400).send({ status: false, message: "This email is already exist" })
 
         // collage id is present in db or not 
-        const isCollegeIdPresent = await collegeModel.findById(collegeId)
-        if (Object.keys(isCollegeIdPresent).length == 0) return res.status(400).send({ status: false, message: `Collage not found by this collageId ${collegeId}` })
+        // const isCollegeIdPresent = await collegeModel.findById(collegeId)
+        // if (Object.keys(isCollegeIdPresent).length == 0) return res.status(400).send({ status: false, message: `Collage not found by this collageId ${collegeId}` })
 
         const newData = { name, email, mobile, collegeId }
         const createdInternData = await internModel.create(newData)
