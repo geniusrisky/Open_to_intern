@@ -25,7 +25,7 @@ const createIntern = async function (req, res) {
         // if (!validation.isVerifyString(collegeName)) return res.status(400).send({ status: false, message: "Please provide a valid collageName" })
         // if (!validation.isValidOjectId(collegeId)) return res.status(400).send({ status: false, message: "Please provide a valid collageId" })
 
-        let oneCollegeData= await collegeModel.findOne({fullName:collegeName , isDeleted:false});
+        let oneCollegeData= await collegeModel.findOne({name:collegeName , isDeleted:false});
 
         if(!oneCollegeData) return res.status(404).send({ status: false, message: "College not found" })
 
