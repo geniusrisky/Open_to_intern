@@ -51,7 +51,7 @@ let getInterns = async function (req, res) {
     try {
 
         // get college name from query params
-        let collegeName = req.query.name
+        let collegeName = req.query.collegeName
         if (!collegeName || collegeName.trim() == "") return res.status(400).send({
             status: false,
             message: "College name must be required!"
