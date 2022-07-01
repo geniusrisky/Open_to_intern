@@ -29,6 +29,16 @@ const isValidUrl = function(url)
     return false
 }
 
+const isValidUrl2 = function(url)
+{
+    if(/^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi.test(url))
+    {
+        return true;
+    }
+    else return false;
+}
+
+
 const validateEmail = function (mail) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return (true)
@@ -76,4 +86,4 @@ const isValidAbbr = function(name,fullName)
 
 
 
-module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo,isVerifyStringForAbbr,isValidAbbr}
+module.exports ={ isBodyEmpty , isValid, isValidUrl, validateEmail, isVerifyString, isValidOjectId , isValidMobileNo,isVerifyStringForAbbr,isValidAbbr,isValidUrl2}
