@@ -17,18 +17,22 @@ const isValid = function(value)
     return true;
 }
 
+
+// Check Object id is valid or not
 const isValidOjectId = function(id)
 {
     if(objectId.isValid(id)) return true;
     return false;
 }
 
+// Check url is valid or not by using (valid-url) module
 const isValidUrl = function(url)
 {
     if (validUrl.isUri(url)) return true;
     return false
 }
 
+// here i checked that our url contains the proper image format or not
 const isValidUrl2 = function(url)
 {
     if(/^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi.test(url))
@@ -39,6 +43,7 @@ const isValidUrl2 = function(url)
 }
 
 
+// here perfom email validation
 const validateEmail = function (mail) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return (true)
@@ -66,16 +71,16 @@ const isValidMobileNo = function(mobno)
 
 
 // check abbr name is valid or not 
-const isValidAbbr = function(name,fullName)
+const isValidAbbr = function(name,fullName) 
 {
     let fullname1=fullName.replace(","," ")
     let fullname2=fullname1.replace("-"," ");
-    let nameArr = fullname2.split(" ") 
-    let abbr =''
+    let nameArr = fullname2.split(" ")
+    let abbr ='' 
     for(let i=0;i<nameArr.length;i++)
         {
-            let temp =nameArr[i].charAt(0) 
-            abbr = abbr+temp 
+            let temp =nameArr[i].charAt(0)  
+            abbr = abbr+temp  
         }
     if(abbr.toUpperCase() == name.toUpperCase() ) 
     {

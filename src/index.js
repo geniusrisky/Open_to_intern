@@ -6,7 +6,9 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://skygupta:Z1Rn76vZdIBqi2FE@cluster0.333as.mongodb.net/group4Database",{useNewUrlParser:true})
+const url="mongodb+srv://skygupta:Z1Rn76vZdIBqi2FE@cluster0.333as.mongodb.net/group4Database";
+
+mongoose.connect(url,{useNewUrlParser:true})
 .then(()=> console.log("Mongodb is connected"))
 .catch(err => cosnole.log(err));
 
